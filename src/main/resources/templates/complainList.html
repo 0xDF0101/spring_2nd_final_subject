@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <head>
+    <head>
+        <meta charset="UTF-8">
+        <title>User</title>
+    </head>
+<body>
+
+<h2>로그인된 사용자 정보</h2>
+id: <span th:text="${user.id}"></span><br>
+name: <span th:text="${user.name}"></span><br>
+role: <span th:text="${user.role}"></span><br>
+
+<!--<a th:href="@{/logout}">로그아웃</a><br>-->
+
+<form method="post" action="/logout" style="display:inline;"><button type="submit">로그아웃</button></form>
+
+</body>
+</html>
