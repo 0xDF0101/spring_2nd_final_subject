@@ -1,6 +1,7 @@
 package com.nhnacademy.nhnmartcs.repository;
 
-import com.nhnacademy.nhnmartcs.domain.Role;
+import com.nhnacademy.nhnmartcs.domain.Cs;
+import com.nhnacademy.nhnmartcs.domain.Customer;
 import com.nhnacademy.nhnmartcs.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -15,10 +16,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     // 샘플 데이터 삽입
     public UserRepositoryImpl() {
-        User user1 = new User("eugene", "qwer", "Eugene", new ArrayList<>(), Role.CUSTOMER);
-        User user2 = new User("suin", "qwer", "Suin", new ArrayList<>(), Role.CUSTOMER);
-        User cs1 = new User("illoong", "qwer", "Illoong", new ArrayList<>(), Role.ADMIN);
-        User cs2 = new User("gyujin", "qwer", "gyujin", new ArrayList<>(), Role.ADMIN);
+        Customer user1 = new Customer("eugene", "qwer", "Eugene", new ArrayList<>());
+        Customer user2 = new Customer("suin", "qwer", "Suin", new ArrayList<>());
+        Cs cs1 = new Cs("illoong", "qwer", "Illoong");
+        Cs cs2 = new Cs("gyujin", "qwer", "gyujin");
 
         userMap.put(user1.getId(), user1);
         userMap.put(user2.getId(), user2);
