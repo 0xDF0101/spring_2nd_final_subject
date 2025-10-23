@@ -16,7 +16,6 @@ public class Customer implements User {
     String id;
     String pwd;
     String name;
-    @Setter
     List<Long> complainIdList;  // 일단 아이디만 담아두고 나중에 ComplainRepo 뒤져서 보여주기
     // ---> 객체 생성할때 생성하면 됨
 
@@ -27,13 +26,4 @@ public class Customer implements User {
 //        return new Complain(-1, req.getTitle(), req.getContent(),
 //                req.getCategory(), LocalDateTime.now(), id, req.getFileAttachment(), false);
 //    }
-
-   /*
-   - 아이디
-- 비밀번호
-- 이름
-- `List<Complain>`
-- Role Enum
-    */
-
 }

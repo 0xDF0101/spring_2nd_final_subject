@@ -1,15 +1,20 @@
 package com.nhnacademy.nhnmartcs.repository;
 
+import com.nhnacademy.nhnmartcs.domain.Category;
 import com.nhnacademy.nhnmartcs.domain.Complain;
+import com.nhnacademy.nhnmartcs.domain.FileAttachment;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
 public class ComplainRepositoryImpl implements ComplainRepository{
 
     private final Map<Long, Complain> complainMap = new HashMap<>();
+    private static long idCounter = 0;
 
     public ComplainRepositoryImpl() {
 
@@ -20,10 +25,19 @@ public class ComplainRepositoryImpl implements ComplainRepository{
         return complainMap.containsKey(complainId);
     }
 
+//    @Override
+//    public long register(Complain complain) {
+//        complainMap.put(complain.getComplainId(), complain);
+//        return ++idCounter; // 굳이 반환을 해야하나?
+//    }
     @Override
-    public Complain register(Complain complain) {
+    public long register(String title, String content, Category category, String customerId,
+                         List<FileAttachment> files) {
+
+        Complain complain = new Complain(idCounter, title, content, category, LocalDateTime.now(), customerId, files, false, null);
+
         complainMap.put(complain.getComplainId(), complain);
-        return complain; // 굳이 반환을 해야하나?
+        return ++idCounter; // 굳이 반환을 해야하나?
     }
 
     @Override

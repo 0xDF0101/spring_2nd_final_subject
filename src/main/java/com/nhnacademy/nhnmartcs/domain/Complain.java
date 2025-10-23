@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -17,8 +18,9 @@ public class Complain {
     private Category category;
     private LocalDateTime createdAt;
     private String customerId;
-    private FileAttachment fileAttachment;
+    private List<FileAttachment> fileAttachments;
     private Boolean isReply;
+    private String reply;
 
     /*
     - 아이디

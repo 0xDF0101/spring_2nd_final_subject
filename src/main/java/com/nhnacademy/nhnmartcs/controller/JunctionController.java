@@ -12,15 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ComplainLIstController {
+public class JunctionController {
 
     private final UserRepository userRepository;
 
-    public ComplainLIstController(UserRepository userRepository) {
+    public JunctionController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/cs/")
+    @GetMapping("/cs")
     public String complainList(HttpServletRequest req, HttpServletResponse res, Model model) {
 
         HttpSession session = req.getSession(false);
@@ -29,7 +29,7 @@ public class ComplainLIstController {
         User user = userRepository.getUser(userId);
         if(user instanceof Customer customer) {
             model.addAttribute("customer", customer);
-            return "complainList";
+            return "redirect:/cs/";
         }
         else if(user instanceof Cs cs) {
             model.addAttribute("cs", cs);
