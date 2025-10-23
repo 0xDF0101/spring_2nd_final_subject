@@ -1,5 +1,7 @@
 package com.nhnacademy.nhnmartcs.controller;
 
+import com.nhnacademy.nhnmartcs.domain.Cs;
+import com.nhnacademy.nhnmartcs.domain.Customer;
 import com.nhnacademy.nhnmartcs.domain.User;
 import com.nhnacademy.nhnmartcs.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,17 +20,21 @@ public class ComplainLIstController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/complainList")
+    @GetMapping("/cs/")
     public String complainList(HttpServletRequest req, HttpServletResponse res, Model model) {
 
         HttpSession session = req.getSession(false);
         String userId = session.getAttribute("LOGIN_USER_ID").toString();
 
         User user = userRepository.getUser(userId);
-
-        model.addAttribute("user", user);
-
-        return "complainList";
+        if(user instanceof Customer customer) {
+            model.addAttribute("customer", customer);
+            return "complainList";
+        }
+        else if(user instanceof Cs cs) {
+            model.addAttribute("cs", cs);
+            return "complainListAdmin";
+        }
+        return "/";
     }
-
 }

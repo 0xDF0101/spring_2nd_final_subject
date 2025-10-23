@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserLogoutController {
 
-    @PostMapping("/logout")
+    @PostMapping("/cs/logout")
     public String logout(HttpServletRequest req,
                          HttpServletResponse res,
                          HttpSession session) {
@@ -35,6 +35,6 @@ public class UserLogoutController {
         }
 
         log.info("로그아웃 되었습니다.");
-        return "redirect:/login";
+        return "redirect:/cs/login";
     }
 }

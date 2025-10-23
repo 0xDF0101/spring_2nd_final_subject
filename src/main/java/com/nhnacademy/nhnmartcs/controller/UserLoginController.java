@@ -22,12 +22,12 @@ public class UserLoginController {
     }
 
 
-    @GetMapping("/login")
+    @GetMapping("/cs/login")
     public String login() {
         return "loginForm";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/cs/login")
     public String doLogin(@RequestParam("id") String id,
                           @RequestParam("pwd") String pwd,
                           HttpServletRequest req,
@@ -48,11 +48,11 @@ public class UserLoginController {
 //            User user = userRepository.getUser(id);
 //            model.addAttribute("user", user); // 로그인한 유저 담아서 뷰에 보내줌
 
-            return "redirect:/complainList";
+            return "redirect:/cs/";
         }
         else {
             log.debug("잘못된 ID나 PW를 입력하였습니다.");
-            return "redirect:/login";
+            return "redirect:/cs/login";
         }
     }
 }

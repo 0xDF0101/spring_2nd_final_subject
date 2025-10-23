@@ -24,7 +24,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         }
 
 //        log.warn("로그인되지 않은 사용자의 접근 시도");
-        response.sendRedirect("/login");
+        response.sendRedirect("/cs/login");
         return false;
     }
 }
