@@ -12,11 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class JunctionController {
+public class LoginJunctionController {
 
     private final UserRepository userRepository;
 
-    public JunctionController(UserRepository userRepository) {
+    public LoginJunctionController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -28,7 +28,6 @@ public class JunctionController {
 
         User user = userRepository.getUser(userId);
         if(user instanceof Customer customer) {
-            model.addAttribute("customer", customer);
             return "redirect:/cs/";
         }
         else if(user instanceof Cs cs) {

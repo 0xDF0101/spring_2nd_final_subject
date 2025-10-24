@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
@@ -48,27 +49,31 @@ public class ComplainController {
     @PostMapping("/cs/complain")
     public String registerComplain(@ModelAttribute RegisterComplainRequest complainRequest, HttpSession session, Model model) throws IOException {
 
+        String id = session.getAttribute("LOGIN_USER_ID").toString();
+
         String title = complainRequest.getTitle();
         String content = complainRequest.getContent();
         Category category = complainRequest.getCategory(); // 자동으로 변환해주나보네?
         List<FileAttachment> files = new ArrayList<>(); // 담아서 넘겨줄 리스트
+
+
         List<MultipartFile> rawFiles = complainRequest.getFiles(); // 가져온 파일
-
-        String id = session.getAttribute("LOGIN_USER_ID").toString();
-
-        // 파일을 실제 저장하고, fileAttachment 형식으로 바꿈
-        for(MultipartFile rawFile : rawFiles) {
-            rawFile.transferTo(Paths.get(UPLOAD_DIR + rawFile.getOriginalFilename()));
-            FileAttachment file = new FileAttachment(UUID.randomUUID().toString(),
-                    rawFile.getOriginalFilename(), UPLOAD_DIR + rawFile.getOriginalFilename(),
-                    rawFile.getSize());
-            files.add(file);
+        if(!rawFiles.get(0).isEmpty()) {
+            // 파일을 실제 저장하고, fileAttachment 형식으로 바꿈
+            for (MultipartFile rawFile : rawFiles) {
+                Path filePath = Paths.get(UPLOAD_DIR, rawFile.getOriginalFilename());
+                rawFile.transferTo(filePath);
+                FileAttachment file = new FileAttachment(UUID.randomUUID().toString(),
+                        rawFile.getOriginalFilename(), UPLOAD_DIR + rawFile.getOriginalFilename(),
+                        rawFile.getSize());
+                files.add(file);
+            }
         }
         long complainId = complainRepository.register(title, content, category, id, files);
         Customer customer = (Customer) userRepository.getUser(id);
         customer.getComplainIdList().add(complainId);
 
 
-        return "redirect:/cs";
+        return "redirect:/cs/";
     }
 }

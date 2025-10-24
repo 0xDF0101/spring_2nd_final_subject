@@ -6,6 +6,7 @@ import com.nhnacademy.nhnmartcs.domain.FileAttachment;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class ComplainRepositoryImpl implements ComplainRepository{
 
     private final Map<Long, Complain> complainMap = new HashMap<>();
-    private static long idCounter = 0;
+    private static long idCounter = 1;
 
     public ComplainRepositoryImpl() {
 
@@ -25,11 +26,6 @@ public class ComplainRepositoryImpl implements ComplainRepository{
         return complainMap.containsKey(complainId);
     }
 
-//    @Override
-//    public long register(Complain complain) {
-//        complainMap.put(complain.getComplainId(), complain);
-//        return ++idCounter; // 굳이 반환을 해야하나?
-//    }
     @Override
     public long register(String title, String content, Category category, String customerId,
                          List<FileAttachment> files) {
@@ -37,11 +33,22 @@ public class ComplainRepositoryImpl implements ComplainRepository{
         Complain complain = new Complain(idCounter, title, content, category, LocalDateTime.now(), customerId, files, false, null);
 
         complainMap.put(complain.getComplainId(), complain);
-        return ++idCounter; // 굳이 반환을 해야하나?
+        return idCounter++; // 굳이 반환을 해야하나?
     }
 
     @Override
     public Complain getComplain(long complainId) {
         return complainMap.get(complainId);
+    }
+
+    @Override
+    public List<Complain> getCustomerComplain(List<Long> complainIds) {
+
+        List<Complain> complains = new ArrayList<>();
+        for(long id : complainIds) {
+            complains.add(complainMap.get(id));
+        }
+
+        return complains;
     }
 }

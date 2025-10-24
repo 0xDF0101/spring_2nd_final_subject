@@ -14,4 +14,6 @@ public interface ComplainRepository {
                          List<FileAttachment> files);
 
     Complain getComplain(long complainId);
+
+    List<Complain> getCustomerComplain(List<Long> complainIds);
 }

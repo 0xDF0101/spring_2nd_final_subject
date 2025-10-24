@@ -13,6 +13,18 @@ name: <span th:text="${customer.name}"></span><br>
 
 <p>여기에 문의 목록이 들어갈 예정</p>
 
+
+<div th:if="${not #lists.isEmpty(complains)}">
+    <ul th:each="complain : ${complains}">
+        <li th:text="${complain.getTitle()}"></li>
+    </ul>
+</div>
+
+<div th:if="${#lists.isEmpty(complains)}">
+    <p>문의하신 내역이 없습니다^~^</p>
+</div>
+<br>
+
 <form method="get" action="/cs/complain" style="display:inline;"><button type="submit">문의하기</button></form>
 
 
