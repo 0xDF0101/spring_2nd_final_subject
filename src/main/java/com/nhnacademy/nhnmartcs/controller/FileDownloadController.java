@@ -27,13 +27,6 @@ import java.util.Optional;
 @Slf4j
 @Controller
 public class FileDownloadController {
-
-    private static final String DOWNLOAD_PATH = "/Users/eugene/Desktop/project/NHNmartCs/src/main/resources/uploadFile/";
-    private final ComplainRepository complainRepository;
-    public FileDownloadController(ComplainRepository complainRepository) {
-        this.complainRepository = complainRepository;
-    }
-
     @GetMapping("/download")
     public ResponseEntity<Resource> downloadFile(@RequestParam("filePath") String filePath) throws IOException {
 

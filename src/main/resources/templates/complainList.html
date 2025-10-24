@@ -11,12 +11,14 @@ id: <span th:text="${customer.id}"></span><br>
 name: <span th:text="${customer.name}"></span><br>
 <!--role: <span th:text="${user.role}"></span><br>-->
 
-<p>여기에 문의 목록이 들어갈 예정</p>
 
 
+<h3>문의 목록</h3>
 <div th:if="${not #lists.isEmpty(complains)}">
     <ul th:each="complain : ${complains}">
-        <li th:text="${complain.getTitle()}"></li>
+        <li>
+            <a th:href="@{/cs/{complainId}(complainId=${complain.getComplainId()})}" th:text="${complain.getTitle()}"></a>
+        </li>
     </ul>
 </div>
 

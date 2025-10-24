@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,6 +31,7 @@ public class ComplainListController {
         Customer customer = (Customer) userRepository.getUser(id);
         // id list를 넘겨주면 complain 리스트를 반환
         List<Complain> complains = complainRepository.getCustomerComplain(customer.getComplainIdList());
+        Collections.reverse(complains);
 
         model.addAttribute("complains", complains);
         model.addAttribute("customer", customer);
