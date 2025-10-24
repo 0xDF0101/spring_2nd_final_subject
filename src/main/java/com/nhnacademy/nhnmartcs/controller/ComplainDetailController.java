@@ -16,7 +16,7 @@ public class ComplainDetailController {
         this.complainRepository = complainRepository;
     }
 
-    @GetMapping("/cs/{complainId}")
+    @GetMapping("/cs/customer/{complainId}")
     public String complainDetail(@PathVariable("complainId") long complainId, Model model, HttpSession session) {
 
         String id = session.getAttribute("LOGIN_USER_ID").toString();
@@ -24,7 +24,6 @@ public class ComplainDetailController {
         Complain complain = complainRepository.getComplain(complainId);
         model.addAttribute("complain", complain);
         model.addAttribute("id", id);
-
 
         return "complainDetail";
     }

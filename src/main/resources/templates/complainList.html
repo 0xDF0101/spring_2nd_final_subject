@@ -17,7 +17,7 @@ name: <span th:text="${customer.name}"></span><br>
 <div th:if="${not #lists.isEmpty(complains)}">
     <ul th:each="complain : ${complains}">
         <li>
-            <a th:href="@{/cs/{complainId}(complainId=${complain.getComplainId()})}" th:text="${complain.getTitle()}"></a>
+            <a th:href="@{/cs/customer/{complainId}(complainId=${complain.getComplainId()})}" th:text="${complain.getTitle()}"></a>
         </li>
     </ul>
 </div>
@@ -27,7 +27,7 @@ name: <span th:text="${customer.name}"></span><br>
 </div>
 <br>
 
-<form method="get" action="/cs/complain" style="display:inline;"><button type="submit">문의하기</button></form>
+<form method="get" action="/cs/customer/complain" style="display:inline;"><button type="submit">문의하기</button></form>
 
 
 

@@ -51,4 +51,10 @@ public class ComplainRepositoryImpl implements ComplainRepository{
 
         return complains;
     }
+
+    // 맵을 통째로 반환하는게 좋은 방법인지는 모르겠음
+    @Override
+    public Map<Long, Complain> getAllComplain() {
+        return complainMap;
+    }
 }

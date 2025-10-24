@@ -10,7 +10,7 @@
 
 <h1>여기는 문의하기 창</h1>
 <h3>오늘도 개쩌는 하루가 되시길 바랍니다.</h3>
-<form method="post" action="/cs/complain" id="uploadForm" enctype="multipart/form-data">
+<form method="post" action="/cs/customer/complain" id="uploadForm" enctype="multipart/form-data">
     제목 : <input type="text" name="title" /><br />
     작성자 : <span th:text="${name}"></span> <br>
     분류 : <select name="category">
@@ -28,7 +28,7 @@
         </ul>
     </div> <br>
     <button type="submit">문의하기</button>
-    <a href="/cs/" style="display:inline;">
+    <a href="/cs/customer" style="display:inline;">
         <button type="button">취소</button>
     </a>
 </form><br>

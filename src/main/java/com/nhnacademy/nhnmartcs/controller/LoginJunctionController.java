@@ -20,7 +20,7 @@ public class LoginJunctionController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/cs")
+    @GetMapping("/cs/junction")
     public String complainList(HttpServletRequest req, HttpServletResponse res, Model model) {
 
         HttpSession session = req.getSession(false);
@@ -28,11 +28,10 @@ public class LoginJunctionController {
 
         User user = userRepository.getUser(userId);
         if(user instanceof Customer customer) {
-            return "redirect:/cs/";
+            return "redirect:/cs/customer";
         }
         else if(user instanceof Cs cs) {
-            model.addAttribute("cs", cs);
-            return "complainListAdmin";
+            return "redirect:/cs/admin";
         }
         return "/";
     }

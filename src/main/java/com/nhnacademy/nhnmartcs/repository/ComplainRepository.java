@@ -5,6 +5,7 @@ import com.nhnacademy.nhnmartcs.domain.Complain;
 import com.nhnacademy.nhnmartcs.domain.FileAttachment;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ComplainRepository {
 
@@ -16,4 +17,7 @@ public interface ComplainRepository {
     Complain getComplain(long complainId);
 
     List<Complain> getCustomerComplain(List<Long> complainIds);
+
+    Map<Long, Complain> getAllComplain();
+
 }

@@ -40,14 +40,14 @@ public class ComplainController {
         this.complainRepository = complainRepository;
     }
 
-    @GetMapping("/cs/complain")
+    @GetMapping("/cs/customer/complain")
     public String complain(HttpSession session, Model model) {
         String id = session.getAttribute("LOGIN_USER_ID").toString();
         model.addAttribute("name", userRepository.getUser(id).getName());
         return "complain";
     }
 
-    @PostMapping("/cs/complain")
+    @PostMapping("/cs/customer/complain")
     public String registerComplain(@ModelAttribute RegisterComplainRequest complainRequest, HttpSession session, Model model) throws IOException {
 
         String id = session.getAttribute("LOGIN_USER_ID").toString();
@@ -74,6 +74,6 @@ public class ComplainController {
         Customer customer = (Customer) userRepository.getUser(id);
         customer.getComplainIdList().add(complainId);
 
-        return "redirect:/cs/" + complainId;
+        return "redirect:/cs/customer/" + complainId;
     }
 }

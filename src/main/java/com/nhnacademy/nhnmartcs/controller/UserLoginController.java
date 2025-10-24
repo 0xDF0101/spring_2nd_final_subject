@@ -48,7 +48,7 @@ public class UserLoginController {
 //            User user = userRepository.getUser(id);
 //            model.addAttribute("user", user); // 로그인한 유저 담아서 뷰에 보내줌
 
-            return "redirect:/cs/";
+            return "redirect:/cs/junction";
         }
         else {
             log.debug("잘못된 ID나 PW를 입력하였습니다.");

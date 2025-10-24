@@ -8,30 +8,27 @@
 <body>
 
 
-<h1>문의 상세 페이지</h1>
+<h1>답변 상세 페이지</h1>
 
 제목 : <span th:text="${complain.getTitle()}"></span> <br>
-작성자 : <span th:text="${id}"></span><br>
+작성자 : <span th:text="${customer}"></span><br>
 분류 : <span th:text="${complain.getCategory()}"></span><br>
 내용 : <span th:text="${complain.getContent()}"></span><br>
-<div th:if="${complain.getIsReply()}">
-    <strong>답변됨</strong>
-    <p>답변 내용</p>
-    <span th:text="${complain.getReply()}"></span><br>
-</div>
-<div th:unless="${complain.getIsReply()}">
-    <strong>답변 안됨</strong>
-</div>
+<p>첨부파일</p>
 <div th:if="${not #lists.isEmpty(complain.getFileAttachments())}">
-    <p>첨부파일</p>
     <ul th:each="file : ${complain.getFileAttachments()}">
         <a th:href="@{/download(filePath=${file.getFilePath()})}" th:text="${file.getFileName()}"></a>
     </ul>
 </div>
 
 <br>
-<a href="/cs/customer" style="display:inline;">
-    <button type="button">목록</button>
+<h3>답변하기</h3>
+<form method="post" th:action="@{/cs/admin/{complainId}(complainId=${complainId})}">
+답변 내용 : <textarea type="text" name="content"></textarea><br />
+    <button type="submit">답변하기</button>
+</form>
+<a href="/cs/admin" style="display:inline;">
+    <button type="button">취소</button>
 </a>
 
 

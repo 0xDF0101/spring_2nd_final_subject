@@ -23,7 +23,7 @@ public class ComplainListController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/cs/")
+    @GetMapping("/cs/customer")
     public String complainList(HttpSession session, Model model) {
 
         String id = session.getAttribute("LOGIN_USER_ID").toString();
@@ -31,6 +31,7 @@ public class ComplainListController {
         Customer customer = (Customer) userRepository.getUser(id);
         // id list를 넘겨주면 complain 리스트를 반환
         List<Complain> complains = complainRepository.getCustomerComplain(customer.getComplainIdList());
+
         Collections.reverse(complains);
 
         model.addAttribute("complains", complains);
