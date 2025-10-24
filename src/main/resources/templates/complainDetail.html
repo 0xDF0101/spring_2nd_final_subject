@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>문의 상세</title>
+</head>
+<body>
+
+
+<h1>문의 상세 페이지</h1>
+
+제목 : <span th:text="${complain.getTitle()}"></span> <br>
+작성자 : <span th:text="${id}"></span><br>
+분류 : <span th:text="${complain.getCategory()}"></span><br>
+내용 : <span th:text="${complain.getContent()}"></span><br>
+<p>첨부파일</p>
+<div th:if="${not #lists.isEmpty(complain.getFileAttachments())}">
+    <ul th:each="file : ${complain.getFileAttachments()}">
+        <a th:href="@{/download(filePath=${file.getFilePath()})}" th:text="${file.getFileName()}"></a>
+    </ul>
+</div>
+
+<br>
+<a href="/cs/" style="display:inline;">
+    <button type="button">취소</button>
+</a>
+
+
+</body>
+</html>

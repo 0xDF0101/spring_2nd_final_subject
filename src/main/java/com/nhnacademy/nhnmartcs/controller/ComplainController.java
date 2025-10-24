@@ -32,7 +32,8 @@ public class ComplainController {
 
     private final UserRepository userRepository;
     private final ComplainRepository complainRepository;
-    private static final String UPLOAD_DIR = "/Users/eugene/Desktop/project/NHNmartCs/src/main/resources/uploadFile/";
+//    private static final String UPLOAD_DIR = "/Users/eugene/Desktop/project/NHNmartCs/src/main/resources/uploadFile/";
+    private static final String UPLOAD_DIR = "src/main/resources/uploadFile/";
 
     public ComplainController(UserRepository userRepository, ComplainRepository complainRepository) {
         this.userRepository = userRepository;
@@ -73,7 +74,6 @@ public class ComplainController {
         Customer customer = (Customer) userRepository.getUser(id);
         customer.getComplainIdList().add(complainId);
 
-
-        return "redirect:/cs/";
+        return "redirect:/cs/" + complainId;
     }
 }
