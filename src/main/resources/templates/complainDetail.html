@@ -14,8 +14,11 @@
 작성자 : <span th:text="${id}"></span><br>
 분류 : <span th:text="${complain.getCategory()}"></span><br>
 내용 : <span th:text="${complain.getContent()}"></span><br>
+<br><br>
 <div th:if="${complain.getIsReply()}">
-    <strong>답변됨</strong>
+    <strong>답변됨</strong><br>
+    답변자:<span th:text="${complain.getReplier()}"></span><br>
+    답변 일시:<span th:text="${complain.getReplyAt()}"></span>
     <p>답변 내용</p>
     <span th:text="${complain.getReply()}"></span><br>
 </div>

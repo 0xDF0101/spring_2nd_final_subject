@@ -30,7 +30,7 @@ public class ComplainRepositoryImpl implements ComplainRepository{
     public long register(String title, String content, Category category, String customerId,
                          List<FileAttachment> files) {
 
-        Complain complain = new Complain(idCounter, title, content, category, LocalDateTime.now(), customerId, files, false, null);
+        Complain complain = new Complain(idCounter, title, content, category, LocalDateTime.now(), customerId, files, false, null, null, null);
 
         complainMap.put(complain.getComplainId(), complain);
         return idCounter++; // 굳이 반환을 해야하나?

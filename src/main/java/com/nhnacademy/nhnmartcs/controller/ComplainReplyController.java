@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class ComplainReplyController {
 
@@ -34,13 +36,16 @@ public class ComplainReplyController {
 
     @PostMapping("/cs/admin/{complainId}")
     public String complainReply(@PathVariable long complainId,
-                                @RequestParam("content") String content) {
+                                @RequestParam("content") String content,
+                                HttpSession session) {
+        String id = session.getAttribute("LOGIN_USER_ID").toString();
 
         Complain complain = complainRepository.getComplain(complainId);
         complain.setReply(content);
         complain.setIsReply(true);
+        complain.setReplier(userRepository.getUser(id).getName());
+        complain.setReplyAt(LocalDateTime.now());
 
         return "redirect:/cs/admin";
     }
-
 }

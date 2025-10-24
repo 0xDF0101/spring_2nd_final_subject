@@ -21,6 +21,9 @@ public class Complain {
     private List<FileAttachment> fileAttachments;
     private Boolean isReply;
     private String reply;
+    private String replier;
+    private LocalDateTime replyAt;
+
 
     /*
     - 아이디
